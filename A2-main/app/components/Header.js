@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
  * You can import them by giving the name of the folder the index.js
  * is located in! */
 import Icons from "../../assets/Icons";
+//import Themes from "../../assets/Themes";
 
 /* This handy trick grabs the width and height of the device's window,
  * which lets you set the sizes of your UI elements relative to the
@@ -19,10 +20,7 @@ const Header = () => {
         <Text style={styles.pronouns}>{Profiles.landay.pronouns}</Text>
       </View>
       <View style={styles.iconPosition}>
-        <Image
-          source={Icons.sun /* For dark mode, use Icons.moon */}
-          style={styles.headerIcon}
-        />
+        <Image source={Icons.sun} style={styles.headerIcon} />
       </View>
     </View>
   );
@@ -30,38 +28,35 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   header: {
-    // fill this in!
     flexDirection: "row", // horizontal layout
-    alignItems: "center", // Align items vertically centered
-    justifyContent: "space-between", // Space between name/pronouns and icon
-    paddingHorizontal: 15, // Adjust horizontal padding as needed
-    paddingTop: 50, // Padding from top to account for any notch
-    paddingBottom: 10, // Adjust bottom padding
+    alignItems: "center",
+    justifyContent: "space-between", // between name/pronouns and icon
+    paddingHorizontal: windowWidth * 0.04,
+    paddingTop: windowHeight * 0.05,
+    paddingBottom: windowHeight * 0.01,
   },
   namePronouns: {
-    flexDirection: "column", // stack name and pronouns vertically
-    alignItems: "flex-start",
+    flexDirection: "column", // stack name and pronouns vertically like example
+    justifyContent: "center",
+    flex: 1,
   },
   iconPosition: {
-    right: 15, // Align icon to the right side
-    top: 20, // Adjust this to control vertical placement relative to the notch
+    right: 0,
   },
   headerIcon: {
     height: windowWidth * 0.1,
     width: windowWidth * 0.1,
-    alignSelf: "flex-end", // ?
+    marginLeft: windowWidth * 0.02,
   },
   name: {
-    // We've loaded this font for you in App.js
-    fontFamily: "Sydney-Bold", // 'Sydney' is the non-bold version
-    fontSize: 36,
+    fontFamily: "Sydney-Bold",
+    fontSize: windowWidth * 0.08,
   },
   pronouns: {
     fontFamily: "Sydney", // Match with the non-bold version
-    fontSize: 16, // Adjust font size for pronouns
+    fontSize: windowWidth * 0.04, // Adjust font size for pronouns
     color: "gray", // Set a gray color for pronouns
   },
-  // add more styles for other components!
 });
 
 export default Header;
