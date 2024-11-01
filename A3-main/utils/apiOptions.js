@@ -9,11 +9,9 @@ const ERROR_ALERT = new Error(
   "Oh no! Something went wrong; probably a malformed request or a network error.\nCheck console for more details."
 );
 
-/* Pulls out the relevant data from the API response and puts it in a nicely structured object. */
 const formatter = (data) =>
   data.map((val) => {
     const artists = val.artists?.map((artist) => ({ name: artist.name }));
-    // returning undefined for now to not confuse students, ideally a fix would be a hosted version of this
     return {
       songTitle: val.name,
       songArtists: artists,
@@ -41,12 +39,19 @@ const fetcher = async (url, token) => {
   }
 };
 
-/* Fetches your top tracks from the Spotify API.
- * Make sure that TOP_TRACKS_API is set correctly in env.js */
-export const getMyTopTracks = async (token) => {
+// /* Fetches your top tracks from the Spotify API.
+//  * Make sure that TOP_TRACKS_API is set correctly in env.js */
+
+export const getMyTopTracks = async (
+  token,
+  offset = 0,
+  limit = 20,
+  timeRange = "medium_term"
+) => {
   try {
-    let res = await fetcher(TOP_TRACKS_API, token);
-    return formatter(res.data?.items);
+    const url = `https://api.spotify.com/v1/me/top/tracks?offset=${offset}&limit=${limit}&time_range=${timeRange}`;
+    const res = await fetcher(url, token);
+    return formatter(res.data?.items || []); // Ensures an empty array if no items
   } catch (e) {
     console.error(e);
     alert(ERROR_ALERT);

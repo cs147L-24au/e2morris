@@ -1,8 +1,8 @@
 import { Platform } from "react-native";
 
 // ***** TODO: Fill in your constants here ***** //
-const CLIENT_ID = "TODO";
-const REDIRECT_URI = "exp://10.34.54.182:19000"; // TODO: Replace this with your own redirect URI
+const CLIENT_ID = "d2592409807440b7b7debeb428e0fbf7";
+const REDIRECT_URI = "exp://10.32.92.98:8081"; // TODO: Replace this with your own redirect URI
 const ALBUM_ID = "2nLOHgzXzwFEpl62zAgCEC?si=Vy8vkAwuT-GJ_nEKsoo2DA"; // By default, this is the Weeknd's album "DAWN FM"
 // ********************************************* //
 
@@ -38,9 +38,10 @@ const ENV = {
       tokenEndpoint: "https://accounts.spotify.com/api/token",
     },
     // ***** TODO: Fill this in ***** //
-    TOP_TRACKS_API: "https://api.spotify.com/v1/TODO",
+    TOP_TRACKS_API: "https://api.spotify.com/v1/me/top/track?offset=${offset}&limit=20",
     // ***** TODO: Or fill this in ***** //
-    ALBUM_TRACK_API_GETTER: (albumId) => "https://api.spotify.com/v1/TODO",
+    ALBUM_TRACK_API_GETTER: (albumId) =>
+      "https://api.spotify.com/v1/albums/{album_id}/tracks",
   },
 };
 

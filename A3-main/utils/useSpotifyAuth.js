@@ -16,7 +16,7 @@ const {
   SPOTIFY_API: { DISCOVERY },
 } = getEnv();
 
-// needed so that the browser closes the modal after auth token
+// Needed so that the browser closes the modal after auth token
 WebBrowser.maybeCompleteAuthSession();
 
 const useSpotifyAuth = () => {
@@ -34,7 +34,18 @@ const useSpotifyAuth = () => {
     DISCOVERY
   );
 
-  // TODO: Figure out how to set `token` properly!
+  useEffect(() => {
+    console.log("useEffect is running"); // Confirm that useEffect is working
+    if (response?.type === "success") {
+      //Checks if response exits
+      console.log("Response:", JSON.stringify(response, null, 2)); // Pretty print the response
+      const { access_token } = response.params;
+      setToken(access_token);
+      console.log("WORKING");
+    } else {
+      console.log("No success in response");
+    }
+  }, [response]);
 
   return { token, getSpotifyAuth: promptAsync };
 };
