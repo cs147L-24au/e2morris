@@ -11,7 +11,7 @@ const ERROR_ALERT = new Error(
 
 const formatter = (data) =>
   data.map((val) => {
-    const artists = val.artists?.map((artist) => ({ name: artist.name }));
+    const artists = val.artists?.map((artist) => ({ name: artist.name })); // Checks if properly exisits in the dataset
     return {
       songTitle: val.name,
       songArtists: artists,
@@ -63,6 +63,8 @@ export const getMyTopTracks = async (
  * Make sure that ALBUM_TRACK_API_GETTER is set correctly in env.js */
 export const getAlbumTracks = async (albumId, token) => {
   try {
+    // Transforms the response to extract relevant information from each track in the album.
+    // Maps through each track item in the response and assigns album images and album name to each track item.
     const res = await fetcher(ALBUM_TRACK_API_GETTER(albumId), token);
     const transformedResponse = res.data?.tracks?.items?.map((item) => {
       item.album = { images: res.data?.images, name: res.data?.name };

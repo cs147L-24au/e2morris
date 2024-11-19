@@ -141,7 +141,7 @@ const styles = {
   container: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 1,
+    flex: 1, // Take up all space in that container 
     backgroundColor: Themes.colors.background,
   },
 

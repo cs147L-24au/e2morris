@@ -47,7 +47,7 @@ const useSpotifyAuth = () => {
     }
   }, [response]);
 
-  return { token, getSpotifyAuth: promptAsync };
+  return { token, getSpotifyAuth: promptAsync }; // Access token Spotify API 
 };
 
 export default useSpotifyAuth;
